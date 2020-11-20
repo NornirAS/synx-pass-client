@@ -15,7 +15,7 @@ export default {
     return {
       mainContainerStyle: {
         height: "100%",
-        padding: "0 1em"
+        padding: "0"
       }
     };
   },
@@ -37,7 +37,7 @@ export default {
 
 <style>
 .v-main {
-  height: 100vh;
+  height: 100%;
 }
 .theme--dark.v-label {
   font-style: italic;

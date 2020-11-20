@@ -1,5 +1,5 @@
 <template>
-  <v-row class="bg" style="height: 100%" justify="center">
+  <v-row class="bg" justify="center">
     <v-col cols="12" md="10" :align="isMobile">
       <br />
       <v-img
@@ -60,6 +60,8 @@ p {
 .bg {
   background: url("../assets/synx-pass-background.png") no-repeat center fixed;
   background-size: cover;
+  height: 100%;
+  padding: 0 1em;
 }
 .synxpass-link {
   color: #dd5745;
