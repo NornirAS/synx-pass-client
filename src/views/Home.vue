@@ -8,19 +8,21 @@
         contain
         src="../assets/synx-pass-logo.png"
         transition="scale-transition"
-        width="60"
+        width="150"
       />
     </v-col>
     <v-col cols="12">
-      <h1 align="center">Welcome to CIOTY domain service</h1>
+      <h1 align="center">
+        Register at SynxPass and explore the world of Real Time Web
+      </h1>
       <br />
       <p align="center">
-        Sign In with your Synx ID and password. Not registered yet?
+        Want to know more about Synx Pass?
         <a
           href="https://synxpass.com/"
           class="text-decoration-none synxpass-link"
           target="_blank"
-          >Sign Up!
+          >Learn here!
         </a>
       </p>
     </v-col>
