@@ -25,16 +25,21 @@
           >Learn here!
         </a>
       </p>
+      <SignUpForm />
     </v-col>
   </v-row>
 </template>
 
 <script>
+import SignUpForm from "../components/SignUpForm";
 export default {
   computed: {
     isMobile() {
       return this.$store.state.isMobile ? "center" : "left";
     }
+  },
+  components: {
+    SignUpForm
   }
 };
 </script>
@@ -57,6 +62,6 @@ p {
   background-size: cover;
 }
 .synxpass-link {
-  color: #00afab;
+  color: #dd5745;
 }
 </style>

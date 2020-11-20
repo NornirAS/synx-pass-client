@@ -39,4 +39,9 @@ export default {
 .v-main {
   height: 100vh;
 }
+.theme--dark.v-label {
+  font-style: italic;
+  padding-left: 0.5em;
+  padding-right: 0.1em;
+}
 </style>
