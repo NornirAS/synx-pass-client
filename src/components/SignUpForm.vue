@@ -30,7 +30,7 @@
         </v-col>
         <v-col cols="12" md="3">
           <v-text-field
-            v-model="authData.confirmPassword"
+            v-model="confirmPassword"
             :rules="passwordRules"
             :counter="30"
             error-count="5"
@@ -71,9 +71,9 @@ export default {
       error: "",
       authData: {
         username: "",
-        password: "",
-        confirmPassword: ""
+        password: ""
       },
+      confirmPassword: "",
       colorRed: "#dd5745",
       usernameRules: [
         v => !!v || "Username is required",
@@ -96,6 +96,7 @@ export default {
     submitForm(e) {
       e.preventDefault();
       if (this.$refs.form.validate()) {
+        this.$socket.emit("register", this.authData);
         this.$refs.form.reset();
       }
     }
@@ -103,7 +104,13 @@ export default {
   computed: {
     isMobile() {
       return this.$store.state.isMobile;
+    },
+    registrationError() {
+      return this.$store.state.registrationModule.errorMessage;
     }
+  },
+  watch(newValue) {
+    this.error = newValue;
   }
 };
 </script>
