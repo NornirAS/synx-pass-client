@@ -47,13 +47,11 @@ export default {
 <style scoped>
 h1 {
   font-size: 30px;
-  font-family: sans-serif;
   font-weight: 300;
   color: #ffffff;
 }
 p {
   font-size: 16px;
-  font-family: sans-serif;
   font-weight: 300;
   color: #ffffff;
 }
@@ -61,7 +59,6 @@ p {
   background: url("../assets/synx-pass-background.png") no-repeat center fixed;
   background-size: cover;
   height: 100%;
-  padding: 0 1em;
 }
 .synxpass-link {
   color: #dd5745;

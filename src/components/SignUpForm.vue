@@ -109,8 +109,10 @@ export default {
       return this.$store.state.registrationModule.errorMessage;
     }
   },
-  watch(newValue) {
-    this.error = newValue;
+  watch: {
+    registrationError(newValue) {
+      this.error = newValue;
+    }
   }
 };
 </script>

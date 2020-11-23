@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <v-container :style="mainContainerStyle" fluid>
+      <v-container fluid>
         <router-view></router-view>
       </v-container>
     </v-main>
@@ -11,14 +11,6 @@
 <script>
 export default {
   name: "App",
-  data() {
-    return {
-      mainContainerStyle: {
-        height: "100%",
-        padding: "0"
-      }
-    };
-  },
   created() {
     this.$store.commit("isMobile", this.isMobile);
   },
@@ -36,12 +28,26 @@ export default {
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+.v-application {
+  font-family: "Open Sans", sans-serif !important;
+}
 .v-main {
+  height: 100vh;
+}
+.container.container--fluid {
   height: 100%;
+  padding: 0 12px;
+  overflow: scroll;
 }
 .theme--dark.v-label {
   font-style: italic;
   padding-left: 0.5em;
   padding-right: 0.1em;
+}
+@media screen and (max-width: 960px) {
+  .v-main {
+    height: 100%;
+  }
 }
 </style>
