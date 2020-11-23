@@ -85,7 +85,8 @@ export default {
         v => !!v || "Password is required",
         v => (v && v.length >= 9) || "Password must be minimum 9 characters",
         v => v.length <= 30 || "Password must be maximum 30 character",
-        v => /(?=.*[A-Z])/.test(v) || "Must have at least one uppercase character",
+        v =>
+          /(?=.*[A-Z])/.test(v) || "Must have at least one uppercase character",
         v => /(?=.*\d)/.test(v) || "Must have at least one number",
         v => (!!v && v) === this.authData.password || "Password must match"
       ]
