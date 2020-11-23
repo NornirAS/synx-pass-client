@@ -1,4 +1,4 @@
-# synx-pass
+# synx-pass [![Build Status](https://travis-ci.com/NornirAS/synx-pass-client.svg?branch=main)](https://travis-ci.com/NornirAS/synx-pass-client)
 
 ## Project setup
 ```
