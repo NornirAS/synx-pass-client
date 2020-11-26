@@ -5,7 +5,7 @@ import VueSocketIO from "vue-socket.io";
 export default Vue.use(
   new VueSocketIO({
     debug: false,
-    connection: "http://localhost:5000",
+    connection: "https://synx-pass-server.herokuapp.com/",
     vuex: {
       store,
       actionPrefix: "SOCKET_",
