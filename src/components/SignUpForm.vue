@@ -10,7 +10,7 @@
             error-count="2"
             type="text"
             name="username"
-            label="Synx ID*"
+            label="Synx ID* (email)"
             dark
             required
           ></v-text-field>
@@ -76,10 +76,10 @@ export default {
       confirmPassword: "",
       colorRed: "#dd5745",
       usernameRules: [
-        v => !!v || "Username is required",
-        v => (v && v.length) >= 4 || "Username must be minimum 4 characters",
-        v => (v && v.length) <= 15 || "Username must be maximum 15 character",
-        v => /^[A-Za-z]+$/.test(v) || "Only alphabet characters are allowed"
+        v => !!v || "Username is required"
+        // v => (v && v.length) >= 4 || "Username must be minimum 4 characters",
+        // v => (v && v.length) <= 15 || "Username must be maximum 15 character",
+        // v => /^[A-Za-z]+$/.test(v) || "Only alphabet characters are allowed"
       ],
       passwordRules: [
         v => !!v || "Password is required",
