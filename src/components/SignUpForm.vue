@@ -1,5 +1,10 @@
 <template>
-  <v-form ref="form" v-model="valid" @submit="submitForm" lazy-validation>
+  <v-form
+    ref="form"
+    v-model="valid"
+    @submit.prevent="submitForm"
+    lazy-validation
+  >
     <v-container>
       <v-row justify="center">
         <v-col cols="12" md="3">
@@ -93,8 +98,8 @@ export default {
     };
   },
   methods: {
-    submitForm(e) {
-      e.preventDefault();
+    submitForm() {
+      this.$refs.form.validate();
       if (this.$refs.form.validate()) {
         this.$socket.emit("register", this.authData);
         this.$refs.form.reset();
@@ -112,6 +117,13 @@ export default {
   watch: {
     registrationError(newValue) {
       this.error = newValue;
+    },
+    authData: {
+      handler() {
+        this.error = "";
+        this.$store.commit("registrationModule/resetErrorMessage");
+      },
+      deep: true
     }
   }
 };
