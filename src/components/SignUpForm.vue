@@ -13,8 +13,8 @@
             :rules="usernameRules"
             :counter="15"
             error-count="2"
-            type="text"
-            name="username"
+            type="email"
+            name="email"
             label="Synx ID* (email)"
             dark
             required
@@ -81,10 +81,8 @@ export default {
       confirmPassword: "",
       colorRed: "#dd5745",
       usernameRules: [
-        v => !!v || "Username is required"
-        // v => (v && v.length) >= 4 || "Username must be minimum 4 characters",
-        // v => (v && v.length) <= 15 || "Username must be maximum 15 character",
-        // v => /^[A-Za-z]+$/.test(v) || "Only alphabet characters are allowed"
+        v => !!v || "E-mail is required",
+        v => /.+@.+/.test(v) || "E-mail must be valid"
       ],
       passwordRules: [
         v => !!v || "Password is required",
