@@ -1,11 +1,11 @@
 <template>
   <div>
     <h1 align="center">
-      Register at SynxPass and explore the world of Real Time Web
+      Get your Token
     </h1>
     <br />
     <p align="center">
-      Want to know more about Synx Pass?
+      Want to know more about Synx Pass Token?
       <a
         href="https://synxpass.com/"
         class="text-decoration-none synxpass-link"
@@ -13,20 +13,20 @@
         >Learn here!
       </a>
     </p>
-    <SignUpForm />
+    <GetTokenForm />
     <p align="center">
-      Already have an account?
+      Don't have an account?
       <router-link
-        :to="{ name: 'get-token' }"
+        :to="{ name: 'registration' }"
         class="text-decoration-none synxpass-link"
-        >Get your Token
+        >Sign Up
       </router-link>
     </p>
   </div>
 </template>
 
 <script>
-import SignUpForm from "../components/SignUpForm";
+import GetTokenForm from "../components/GetTokenForm";
 export default {
   computed: {
     successMessage() {
@@ -39,7 +39,7 @@ export default {
     }
   },
   components: {
-    SignUpForm
+    GetTokenForm
   }
 };
 </script>

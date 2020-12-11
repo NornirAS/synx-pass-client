@@ -3,13 +3,14 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import SignUp from "../components/SignUp";
 import RegistrationSuccess from "../components/RegistrationSuccess";
+import GetToken from "../components/GetToken";
+import DisplayToken from "../components/DisplayToken";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
     component: Home,
     children: [
       {
@@ -21,6 +22,16 @@ const routes = [
         path: "registration-success",
         name: "registration-success",
         component: RegistrationSuccess
+      },
+      {
+        path: "get-token",
+        name: "get-token",
+        component: GetToken
+      },
+      {
+        path: "token",
+        name: "token",
+        component: DisplayToken
       }
     ]
   }
