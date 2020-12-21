@@ -99,7 +99,7 @@ export default {
     submitForm() {
       this.$refs.form.validate();
       if (this.$refs.form.validate()) {
-        this.$socket.emit("register", this.authData);
+        this.$socket.emit("register_user", this.authData);
         this.$refs.form.reset();
       }
     }
