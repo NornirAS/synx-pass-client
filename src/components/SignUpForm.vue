@@ -7,11 +7,11 @@
   >
     <v-container>
       <v-row justify="center">
-        <v-col cols="12" md="3">
+        <v-col cols="12" md="4">
           <v-text-field
             v-model="authData.username"
             :rules="usernameRules"
-            :counter="15"
+            :counter="64"
             error-count="2"
             type="email"
             name="email"
@@ -19,26 +19,22 @@
             dark
             required
           ></v-text-field>
-        </v-col>
-        <v-col cols="12" md="3">
           <v-text-field
             v-model="authData.password"
             :rules="passwordRules"
-            :counter="30"
-            error-count="5"
+            :counter="32"
+            error-count="2"
             type="password"
             name="password"
             label="Password*"
             dark
             required
           ></v-text-field>
-        </v-col>
-        <v-col cols="12" md="3">
           <v-text-field
             v-model="confirmPassword"
             :rules="passwordRules"
-            :counter="30"
-            error-count="5"
+            :counter="32"
+            error-count="2"
             type="password"
             name="password"
             label="Confirm Password*"
@@ -53,8 +49,6 @@
           <p align="center">{{ error }}</p>
         </v-col>
       </v-row>
-      <br v-if="!isMobile" />
-      <br v-if="!isMobile" />
       <br v-if="!isMobile" />
       <br v-if="!isMobile" />
       <v-row justify="center">
@@ -90,17 +84,17 @@ export default {
         v => (v && v.length) <= 30 || "Password must be maximum 30 character",
         v =>
           /(?=.*[A-Z])/.test(v) || "Must have at least one uppercase character",
-        v => /(?=.*\d)/.test(v) || "Must have at least one number",
-        v => (!!v && v) === this.authData.password || "Password must match"
+        v => /(?=.*\d)/.test(v) || "Must have at least one number"
       ]
     };
   },
   methods: {
     submitForm() {
       this.$refs.form.validate();
-      if (this.$refs.form.validate()) {
+      if (this.$refs.form.validate() && this.checkIfPasswordMatch) {
         this.$socket.emit("register_user", this.authData);
-        this.$refs.form.reset();
+      } else if (!this.checkIfPasswordMatch) {
+        this.error = "Password doesn't match";
       }
     }
   },
@@ -110,6 +104,9 @@ export default {
     },
     registrationError() {
       return this.$store.state.registrationModule.errorMessage;
+    },
+    checkIfPasswordMatch() {
+      return this.authData.password === this.confirmPassword ? true : false;
     }
   },
   watch: {
@@ -122,6 +119,10 @@ export default {
         this.$store.commit("registrationModule/resetErrorMessage");
       },
       deep: true
+    },
+    confirmPassword() {
+      this.error = "";
+      this.$store.commit("registrationModule/resetErrorMessage");
     }
   }
 };
@@ -132,11 +133,6 @@ p {
   font-family: sans-serif;
   font-weight: 300;
   color: #ffffff;
-}
-input:-webkit-autofill,
-textarea:-webkit-autofill,
-select:-webkit-autofill {
-  transition-delay: 3600s;
 }
 .theme--dark.v-btn {
   color: #dd5745 !important;

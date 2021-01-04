@@ -11,17 +11,20 @@
           <v-text-field
             v-model="authData.username"
             :rules="[v => !!v || 'Username is required']"
+            type="email"
+            name="email"
             label="Synx ID (email)"
+            error-count="2"
             dark
             required
           ></v-text-field>
-        </v-col>
-        <v-col cols="12" md="4">
           <v-text-field
             v-model="authData.password"
             :rules="[v => !!v || 'Password is required']"
             type="password"
+            name="password"
             label="Password"
+            error-count="2"
             dark
             required
           ></v-text-field>
@@ -34,11 +37,16 @@
       </v-row>
       <br v-if="!isMobile" />
       <br v-if="!isMobile" />
-      <br v-if="!isMobile" />
-      <br v-if="!isMobile" />
       <v-row justify="center">
         <v-col cols="12" md="4" align="center">
-          <v-btn :color="colorWhite" type="submit" rounded outlined dark>
+          <v-btn
+            :color="colorWhite"
+            class="text-capitalize"
+            type="submit"
+            rounded
+            outlined
+            dark
+          >
             Get Token
           </v-btn>
         </v-col>
