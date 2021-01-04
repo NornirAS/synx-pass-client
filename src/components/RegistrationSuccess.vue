@@ -5,7 +5,7 @@
     </h1>
     <br />
     <p align="center">
-      Now you can login to
+      Now you can Sign In to
       <a
         href="http://localhost:8080"
         class="text-decoration-none synxpass-link"
