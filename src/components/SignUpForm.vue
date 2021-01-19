@@ -44,7 +44,7 @@
         </v-col>
       </v-row>
       <v-row justify="center">
-        <v-col cols="12" md="4">
+        <v-col cols="12" md="10">
           <p align="center">* Required fields</p>
           <p align="center">{{ error }}</p>
         </v-col>
