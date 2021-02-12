@@ -15,6 +15,14 @@
     </p>
     <GetTokenForm />
     <p align="center">
+      <router-link
+        :to="{ name: 'reset-password' }"
+        class="text-decoration-none synxpass-link"
+      >
+        Forgot you password?
+      </router-link>
+    </p>
+    <p align="center">
       Don't have an account?
       <router-link
         :to="{ name: 'registration' }"

@@ -5,6 +5,10 @@ import SignUp from "../components/SignUp";
 import RegistrationSuccess from "../components/RegistrationSuccess";
 import GetToken from "../components/GetToken";
 import DisplayToken from "../components/DisplayToken";
+import ResetPassword from "../components/reset-password/ResetPassword";
+import ResetPasswordDone from "../components/reset-password/ResetPasswordDone";
+import NewPassword from "../components/reset-password/NewPassword";
+import NewPasswordDone from "../components/reset-password/NewPasswordDone";
 
 Vue.use(VueRouter);
 
@@ -32,6 +36,26 @@ const routes = [
         path: "token",
         name: "token",
         component: DisplayToken
+      },
+      {
+        path: "reset-password",
+        name: "reset-password",
+        component: ResetPassword
+      },
+      {
+        path: "reset-password-done",
+        name: "reset-password-done",
+        component: ResetPasswordDone
+      },
+      {
+        path: "new-password",
+        name: "new-password",
+        component: NewPassword
+      },
+      {
+        path: "new-password-done",
+        name: "new-password-done",
+        component: NewPasswordDone
       }
     ]
   }
