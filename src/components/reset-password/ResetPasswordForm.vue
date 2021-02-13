@@ -9,8 +9,8 @@
       <v-row justify="center">
         <v-col cols="12" sm="10" md="8">
           <v-text-field
-            v-model="email"
-            :rules="emailRules"
+            v-model="username"
+            :rules="usernameRules"
             type="email"
             name="email"
             label="Synx ID (email)"
@@ -45,8 +45,8 @@ export default {
   data() {
     return {
       valid: false,
-      email: "",
-      emailRules: [v => !!v || "Email is required"],
+      username: "",
+      usernameRules: [v => !!v || "Email is required"],
       colorWhite: "#FFFFFF"
     };
   },
@@ -54,7 +54,8 @@ export default {
     submitForm() {
       const isValid = this.$refs.form.validate();
       if (isValid) {
-        console.log("done");
+        this.$socket.emit("reset_password", this.username);
+        this.$refs.form.reset();
       }
     }
   },

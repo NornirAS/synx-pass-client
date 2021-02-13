@@ -23,6 +23,16 @@
 <script>
 import ResetPasswordForm from "./ResetPasswordForm";
 export default {
+  computed: {
+    resetPasswordSuccess() {
+      return this.$store.state.resetPasswordModule.resetPasswordSuccess;
+    }
+  },
+  watch: {
+    resetPasswordSuccess() {
+      this.$router.push({ name: "reset-password-done" });
+    }
+  },
   components: {
     ResetPasswordForm
   }
