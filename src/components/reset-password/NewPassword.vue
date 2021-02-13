@@ -14,6 +14,16 @@
 <script>
 import NewPasswordForm from "./NewPasswordForm";
 export default {
+  computed: {
+    newPasswordSuccess() {
+      return this.$store.state.resetPasswordModule.newPasswordSuccess;
+    }
+  },
+  watch: {
+    newPasswordSuccess() {
+      this.$router.push({ name: "new-password-done" });
+    }
+  },
   components: {
     NewPasswordForm
   }

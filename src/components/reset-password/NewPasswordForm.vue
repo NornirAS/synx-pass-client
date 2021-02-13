@@ -58,13 +58,19 @@ export default {
     return {
       valid: false,
       colorWhite: "#FFFFFF",
+      password: "",
+      confirmPassword: "",
+      tempPassword: "768e78024aa8fdb9b8fe87be86f64745d06e8f825a",
+      username: "jevgeni@nornir.io",
       passwordRules: [
         v => !!v || "Password is required",
         v => (v && v.length) >= 9 || "Password must be minimum 9 characters",
         v => (v && v.length) <= 30 || "Password must be maximum 30 character",
         v =>
           /(?=.*[A-Z])/.test(v) || "Must have at least one uppercase character",
-        v => /(?=.*\d)/.test(v) || "Must have at least one number"
+        v => /(?=.*\d)/.test(v) || "Must have at least one number",
+        v => v === this.confirmPassword || "Passwords must match",
+        v => v === this.password || "Passwords must match"
       ]
     };
   },
@@ -72,7 +78,12 @@ export default {
     submitForm() {
       const isValid = this.$refs.form.validate();
       if (isValid) {
-        console.log("lavid");
+        this.$socket.emit("new_password", {
+          tempPassword: this.tempPassword,
+          username: this.username,
+          password: this.password
+        });
+        this.$refs.form.reset();
       }
     }
   },
