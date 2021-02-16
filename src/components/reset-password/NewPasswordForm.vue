@@ -100,11 +100,17 @@ export default {
     },
     username() {
       return this.$route.query.username;
+    },
+    newPasswordError() {
+      return this.$store.state.newPasswordError;
     }
   },
   watch: {
     confirmPassword(newValue) {
       this.error = this.password !== newValue ? "Passwords must match" : "";
+    },
+    newPasswordError(newValue) {
+      this.error = newValue;
     }
   }
 };

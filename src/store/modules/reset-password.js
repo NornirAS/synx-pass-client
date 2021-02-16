@@ -1,6 +1,7 @@
 const state = {
   resetPasswordSuccess: "",
-  newPasswordSuccess: ""
+  newPasswordSuccess: "",
+  newPasswordError: ""
 };
 
 const mutations = {
@@ -9,6 +10,9 @@ const mutations = {
   },
   newPasswordSuccess(state, payload) {
     state.newPasswordSuccess = payload;
+  },
+  newPasswordError(state, payload) {
+    state.newPasswordError = payload;
   },
   resetState(state) {
     state.resetPasswordSuccess = "";
@@ -24,6 +28,10 @@ const actions = {
   SOCKET_new_password_success({ commit }, data) {
     commit("resetState");
     commit("newPasswordSuccess", data);
+  },
+  SOCKET_new_password_error({ commit }, data) {
+    commit("resetState");
+    commit("newPasswordError", data);
   }
 };
 
