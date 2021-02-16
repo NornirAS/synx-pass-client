@@ -48,6 +48,8 @@
           </v-btn>
         </v-col>
       </v-row>
+      {{ tempPassword }}
+      {{ username }}
     </v-container>
   </v-form>
 </template>
@@ -90,11 +92,10 @@ export default {
       return this.$store.state.isMobile;
     },
     tempPassword() {
-      return this.$route.params.token;
+      return this.$route.query.token;
     },
     username() {
-      const username = this.$route.params.username;
-      return username.replace(/%40/, "@");
+      return this.$route.query.username;
     }
   }
 };
