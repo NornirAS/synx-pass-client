@@ -32,6 +32,12 @@
           ></v-text-field>
         </v-col>
       </v-row>
+      <v-row justify="center">
+        <v-col cols="12" md="10">
+          <p align="center">* Required fields</p>
+          <p align="center">{{ error }}</p>
+        </v-col>
+      </v-row>
       <br v-if="!isMobile" />
       <br v-if="!isMobile" />
       <v-row justify="center">
@@ -48,8 +54,6 @@
           </v-btn>
         </v-col>
       </v-row>
-      {{ tempPassword }}
-      {{ username }}
     </v-container>
   </v-form>
 </template>
@@ -62,22 +66,22 @@ export default {
       colorWhite: "#FFFFFF",
       password: "",
       confirmPassword: "",
+      error: "",
       passwordRules: [
         v => !!v || "Password is required",
         v => (v && v.length) >= 9 || "Password must be minimum 9 characters",
         v => (v && v.length) <= 30 || "Password must be maximum 30 character",
         v =>
           /(?=.*[A-Z])/.test(v) || "Must have at least one uppercase character",
-        v => /(?=.*\d)/.test(v) || "Must have at least one number",
-        v => v === this.confirmPassword || "Passwords must match",
-        v => v === this.password || "Passwords must match"
+        v => /(?=.*\d)/.test(v) || "Must have at least one number"
       ]
     };
   },
   methods: {
     submitForm() {
       const isValid = this.$refs.form.validate();
-      if (isValid) {
+      const noError = this.error === "";
+      if (isValid && noError) {
         this.$socket.emit("new_password", {
           tempPassword: this.tempPassword,
           username: this.username,
@@ -96,6 +100,11 @@ export default {
     },
     username() {
       return this.$route.query.username;
+    }
+  },
+  watch: {
+    confirmPassword(newValue) {
+      this.error = this.password !== newValue ? "Passwords must match" : "";
     }
   }
 };
