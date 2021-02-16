@@ -60,8 +60,6 @@ export default {
       colorWhite: "#FFFFFF",
       password: "",
       confirmPassword: "",
-      tempPassword: "768e78024aa8fdb9b8fe87be86f64745d06e8f825a",
-      username: "jevgeni@nornir.io",
       passwordRules: [
         v => !!v || "Password is required",
         v => (v && v.length) >= 9 || "Password must be minimum 9 characters",
@@ -90,6 +88,13 @@ export default {
   computed: {
     isMobile() {
       return this.$store.state.isMobile;
+    },
+    tempPassword() {
+      return this.$route.params.token;
+    },
+    username() {
+      const username = this.$route.params.username;
+      return username.replace(/%40/, "@");
     }
   }
 };
