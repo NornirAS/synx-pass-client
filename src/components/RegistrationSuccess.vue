@@ -7,7 +7,7 @@
     <p align="center">
       Now you can Sign In to
       <a
-        href="https://domain.cioty.com/services"
+        href="https://domain.cioty.com"
         class="text-decoration-none synxpass-link"
       >
         CIOTY.com
