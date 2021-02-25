@@ -7,7 +7,7 @@
       <p align="center">
         Want to know more about Synx Pass?
         <a
-          href="https://synxpass.com/"
+          href="https://synxhive.com/"
           class="text-decoration-none synxpass-link"
           target="_blank"
           >Learn here!
