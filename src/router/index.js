@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import RegistrationPage from "../components/registration/RegistrationPage";
+import VerifyEmailSentSuccess from "../components/registration/VerifyEmailSentSuccess";
 import RegistrationSuccess from "../components/registration/RegistrationSuccess";
 import GetToken from "../components/GetToken";
 import DisplayToken from "../components/DisplayToken";
@@ -21,6 +22,11 @@ const routes = [
         path: "/",
         name: "registration",
         component: RegistrationPage
+      },
+      {
+        path: "verification-email-sent",
+        name: "verification-email-sent-success",
+        component: VerifyEmailSentSuccess
       },
       {
         path: "registration-success",

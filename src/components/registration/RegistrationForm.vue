@@ -9,7 +9,7 @@
       <v-row justify="center">
         <v-col cols="12" sm="10" md="8">
           <v-text-field
-            v-model="authData.username"
+            v-model="username"
             :rules="usernameRules"
             :counter="64"
             error-count="1"
@@ -20,7 +20,7 @@
             required
           ></v-text-field>
           <v-text-field
-            v-model="authData.password"
+            v-model="password"
             :rules="passwordRules"
             :counter="32"
             error-count="1"
@@ -63,15 +63,14 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
       valid: false,
       error: "",
-      authData: {
-        username: "",
-        password: ""
-      },
+      username: "",
+      password: "",
       confirmPassword: "",
       colorRed: "#dd5745",
       usernameRules: [
@@ -89,40 +88,43 @@ export default {
     };
   },
   methods: {
+    ...mapMutations("registration", ["resetVerifyEmailSentErrorMsg"]),
     submitForm() {
-      this.$refs.form.validate();
-      if (this.$refs.form.validate() && this.checkIfPasswordMatch) {
-        this.$socket.emit("register_user", this.authData);
+      const isValidFrom = this.$refs.form.validate();
+      if (isValidFrom && this.checkIfPasswordMatch) {
+        this.$socket.emit("send_verify_email", {
+          username: this.username,
+          password: this.password,
+          confirmPassword: this.confirmPassword
+        });
       } else if (!this.checkIfPasswordMatch) {
         this.error = "Password doesn't match";
       }
+    },
+    resetError() {
+      this.error = "";
+      this.resetVerifyEmailSentErrorMsg();
     }
   },
   computed: {
-    isMobile() {
-      return this.$store.state.isMobile;
-    },
-    registrationError() {
-      return this.$store.state.registrationModule.errorMessage;
-    },
+    ...mapState(["isMobile"]),
+    ...mapState("registration", ["verifyEmailSentErrorMsg"]),
     checkIfPasswordMatch() {
-      return this.authData.password === this.confirmPassword ? true : false;
+      return this.password === this.confirmPassword ? true : false;
     }
   },
   watch: {
-    registrationError(newValue) {
+    verifyEmailSentErrorMsg(newValue) {
       this.error = newValue;
     },
-    authData: {
-      handler() {
-        this.error = "";
-        this.$store.commit("registrationModule/resetErrorMessage");
-      },
-      deep: true
+    username() {
+      this.resetError();
+    },
+    password() {
+      this.resetError();
     },
     confirmPassword() {
-      this.error = "";
-      this.$store.commit("registrationModule/resetErrorMessage");
+      this.resetError();
     }
   }
 };

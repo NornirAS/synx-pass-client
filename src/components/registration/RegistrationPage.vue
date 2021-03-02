@@ -15,7 +15,7 @@
       </p>
     </v-col>
     <v-col cols="12">
-      <SignUpForm />
+      <registration-form></registration-form>
       <p align="center">
         Already have an account?
         <router-link
@@ -29,20 +29,19 @@
 </template>
 
 <script>
-import SignUpForm from "./SignUpForm";
+import { mapState } from "vuex";
+import RegistrationForm from "./RegistrationForm";
 export default {
   computed: {
-    successMessage() {
-      return this.$store.state.registrationModule.successMessage;
-    }
+    ...mapState("registration", ["verifyEmailSentSuccessMsg"])
   },
   watch: {
-    successMessage() {
-      this.$router.push({ name: "registration-success" });
+    verifyEmailSentSuccessMsg() {
+      this.$router.push({ name: "verification-email-sent-success" });
     }
   },
   components: {
-    SignUpForm
+    RegistrationForm
   }
 };
 </script>

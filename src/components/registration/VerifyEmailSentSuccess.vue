@@ -1,27 +1,21 @@
 <template>
   <div>
     <h1 align="center">
-      {{ successMessage }}
+      {{ verifyEmailSentSuccessMsg }}
     </h1>
     <br />
     <p align="center">
-      Now you can Sign In to
-      <a
-        href="https://domain.cioty.com"
-        class="text-decoration-none synxpass-link"
-      >
-        CIOTY.com
-      </a>
+      Please click on the link that has just been sent to your email account to
+      continue the registration proccess
     </p>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   computed: {
-    successMessage() {
-      return this.$store.state.registration.successMessage;
-    }
+    ...mapState("registration", ["verifyEmailSentSuccessMsg"])
   }
 };
 </script>
@@ -36,8 +30,5 @@ p {
   font-size: 16px;
   font-weight: 300;
   color: #ffffff;
-}
-.synxpass-link {
-  color: #dd5745;
 }
 </style>

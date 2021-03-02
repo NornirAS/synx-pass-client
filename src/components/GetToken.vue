@@ -38,7 +38,7 @@ import GetTokenForm from "../components/GetTokenForm";
 export default {
   computed: {
     successMessage() {
-      return this.$store.state.registrationModule.successMessage;
+      return this.$store.state.registration.successMessage;
     }
   },
   watch: {
