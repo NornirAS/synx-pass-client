@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import SignUp from "../components/SignUp";
-import RegistrationSuccess from "../components/RegistrationSuccess";
+import RegistrationPage from "../components/registration/RegistrationPage";
+import RegistrationSuccess from "../components/registration/RegistrationSuccess";
 import GetToken from "../components/GetToken";
 import DisplayToken from "../components/DisplayToken";
 import ResetPassword from "../components/reset-password/ResetPassword";
@@ -20,7 +20,7 @@ const routes = [
       {
         path: "/",
         name: "registration",
-        component: SignUp
+        component: RegistrationPage
       },
       {
         path: "registration-success",

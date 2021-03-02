@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import SignUpForm from "../components/SignUpForm";
+import SignUpForm from "./SignUpForm";
 export default {
   computed: {
     successMessage() {
