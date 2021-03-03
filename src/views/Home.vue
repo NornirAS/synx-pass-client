@@ -1,27 +1,28 @@
 <template>
   <v-row class="bg" justify="center">
-    <v-col cols="12" md="10" :align="isMobile">
-      <br />
+    <v-col cols="12" md="10" :align="alignDependsOnScreenSize">
       <v-img
-        alt="Cioty"
-        class="shrink mr-2"
+        alt="synx-pass-logo"
+        class="mt-4"
         contain
         src="../assets/synx-pass-logo.png"
         transition="scale-transition"
-        width="150"
+        width="150px"
       />
     </v-col>
-    <v-col cols="12" sm="10" md="5">
+    <v-col cols="12" sm="10" md="8">
       <router-view></router-view>
     </v-col>
   </v-row>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   computed: {
-    isMobile() {
-      return this.$store.state.isMobile ? "center" : "left";
+    ...mapState(["isMobile"]),
+    alignDependsOnScreenSize() {
+      return this.isMobile ? "center" : "left";
     }
   }
 };
