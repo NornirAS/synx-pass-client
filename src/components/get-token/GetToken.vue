@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import GetTokenForm from "../components/GetTokenForm";
+import GetTokenForm from "./GetTokenForm";
 export default {
   computed: {
     successMessage() {
