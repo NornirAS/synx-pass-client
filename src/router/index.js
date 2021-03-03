@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import RegistrationPage from "../components/registration/RegistrationPage";
 import VerifyEmailSentSuccess from "../components/registration/VerifyEmailSentSuccess";
+import VerifyEmail from "../components/registration/VerifyEmail";
 import RegistrationSuccess from "../components/registration/RegistrationSuccess";
 import GetToken from "../components/GetToken";
 import DisplayToken from "../components/DisplayToken";
@@ -19,7 +20,7 @@ const routes = [
     component: Home,
     children: [
       {
-        path: "/",
+        path: "",
         name: "registration",
         component: RegistrationPage
       },
@@ -27,6 +28,11 @@ const routes = [
         path: "verification-email-sent",
         name: "verification-email-sent-success",
         component: VerifyEmailSentSuccess
+      },
+      {
+        path: "verify-email",
+        name: "verify-email",
+        component: VerifyEmail
       },
       {
         path: "registration-success",

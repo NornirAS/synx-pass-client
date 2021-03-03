@@ -9,17 +9,6 @@
       <v-row justify="center">
         <v-col cols="12" sm="10" md="8">
           <v-text-field
-            v-model="username"
-            :rules="usernameRules"
-            :counter="64"
-            error-count="1"
-            type="email"
-            name="email"
-            label="Synx ID* (email)"
-            dark
-            required
-          ></v-text-field>
-          <v-text-field
             v-model="password"
             :rules="passwordRules"
             :counter="32"
@@ -54,7 +43,7 @@
       <v-row justify="center">
         <v-col cols="12" align="center">
           <v-btn class="text-capitalize" type="submit" rounded outlined dark>
-            Sign Up
+            Complete registration
           </v-btn>
         </v-col>
       </v-row>
@@ -65,18 +54,14 @@
 <script>
 import { mapState, mapMutations } from "vuex";
 export default {
+  props: ["username"],
   data() {
     return {
       valid: false,
       error: "",
-      username: "",
       password: "",
       confirmPassword: "",
       colorRed: "#dd5745",
-      usernameRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+/.test(v) || "E-mail must be valid"
-      ],
       passwordRules: [
         v => !!v || "Password is required",
         v => (v && v.length) >= 9 || "Password must be minimum 9 characters",
@@ -88,14 +73,13 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("registration", ["resetVerifyEmailSentErrorMsg"]),
+    ...mapMutations("registration", ["resetRegistrationErrorMsg"]),
     submitForm() {
       const isValidFrom = this.$refs.form.validate();
       if (isValidFrom && this.checkIfPasswordMatch) {
-        this.$socket.emit("send_verify_email", {
+        this.$socket.emit("register_user", {
           username: this.username,
-          password: this.password,
-          confirmPassword: this.confirmPassword
+          password: this.password
         });
       } else if (!this.checkIfPasswordMatch) {
         this.error = "Password doesn't match";
@@ -103,12 +87,12 @@ export default {
     },
     resetError() {
       this.error = "";
-      this.resetVerifyEmailSentErrorMsg();
+      this.resetRegistrationErrorMsg();
     }
   },
   computed: {
     ...mapState(["isMobile"]),
-    ...mapState("registration", ["verifyEmailSentErrorMsg"]),
+    ...mapState("registration", ["registrationErrorMsg"]),
     checkIfPasswordMatch() {
       return this.password === this.confirmPassword ? true : false;
     }
@@ -116,9 +100,6 @@ export default {
   watch: {
     verifyEmailSentErrorMsg(newValue) {
       this.error = newValue;
-    },
-    username() {
-      this.resetError();
     },
     password() {
       this.resetError();

@@ -1,8 +1,10 @@
 const state = {
   verifyEmailSentSuccessMsg: "",
   verifyEmailSentErrorMsg: "",
-  successMessage: "",
-  errorMessage: ""
+  completeEmailVerificationSuccessMsg: "",
+  completeEmailVerificationErrorMsg: "",
+  registrationSuccessMsg: "",
+  registrationErrorMsg: ""
 };
 
 const mutations = {
@@ -15,14 +17,20 @@ const mutations = {
   resetVerifyEmailSentErrorMsg(state) {
     state.verifyEmailSentErrorMsg = "";
   },
-  successMessage(state, payload) {
-    state.successMessage = payload;
+  addCompleteEmailVerificationSuccessMsg(state, payload) {
+    state.completeEmailVerificationSuccessMsg = payload;
   },
-  errorMessage(state, payload) {
-    state.errorMessage = payload;
+  addCompleteEmailVerificationErrorMsg(state, payload) {
+    state.completeEmailVerificationErrorMsg = payload;
   },
-  resetErrorMessage(state) {
-    state.errorMessage = "";
+  addRegistrationSuccessMsg(state, payload) {
+    state.registrationSuccessMsg = payload;
+  },
+  addRegistrationErrorMsg(state, payload) {
+    state.registrationErrorMsg = payload;
+  },
+  resetRegistrationErrorMsg(state) {
+    state.registrationErrorMsg = "";
   }
 };
 
@@ -33,11 +41,17 @@ const actions = {
   SOCKET_send_verify_email_error({ commit }, data) {
     commit("addVerifyEmailSentErrorMsg", data);
   },
+  SOCKET_complete_email_verification_success({ commit }, data) {
+    commit("addCompleteEmailVerificationSuccessMsg", data);
+  },
+  SOCKET_complete_email_verification_error({ commit }, data) {
+    commit("addCompleteEmailVerificationErrorMsg", data);
+  },
   SOCKET_registration_success({ commit }, data) {
-    commit("successMessage", data);
+    commit("addRegistrationSuccessMsg", data);
   },
   SOCKET_registration_error({ commit }, data) {
-    commit("errorMessage", data);
+    commit("addRegistrationErrorMsg", data);
   }
 };
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 align="center">
-      {{ successMessage }}
+      {{ registrationSuccessMsg }}
     </h1>
     <br />
     <p align="center">
@@ -17,11 +17,10 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   computed: {
-    successMessage() {
-      return this.$store.state.registration.successMessage;
-    }
+    ...mapState("registration", ["registrationSuccessMsg"])
   }
 };
 </script>
