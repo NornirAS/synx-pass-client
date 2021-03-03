@@ -28,10 +28,6 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-.v-application {
-  font-family: "Open Sans", sans-serif !important;
-}
 .v-main {
   height: 100vh;
 }
@@ -39,6 +35,12 @@ export default {
   height: 100%;
   padding: 0 12px;
   overflow: scroll;
+}
+.headline {
+  color: var(--v-primary-base);
+}
+.body-1 {
+  color: var(--v-primary-base);
 }
 .theme--dark.v-label {
   font-style: italic;

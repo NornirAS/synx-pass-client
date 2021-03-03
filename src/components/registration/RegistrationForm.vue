@@ -5,60 +5,52 @@
     @submit.prevent="submitForm"
     lazy-validation
   >
-    <v-container>
-      <v-row justify="center">
-        <v-col cols="12" sm="10" md="8">
-          <v-text-field
-            v-model="username"
-            :rules="usernameRules"
-            :counter="64"
-            error-count="1"
-            type="email"
-            name="email"
-            label="Synx ID* (email)"
-            dark
-            required
-          ></v-text-field>
-          <v-text-field
-            v-model="password"
-            :rules="passwordRules"
-            :counter="32"
-            error-count="1"
-            type="password"
-            name="password"
-            label="Password*"
-            dark
-            required
-          ></v-text-field>
-          <v-text-field
-            v-model="confirmPassword"
-            :rules="passwordRules"
-            :counter="32"
-            error-count="1"
-            type="password"
-            name="password"
-            label="Confirm Password*"
-            dark
-            required
-          ></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row justify="center">
-        <v-col cols="12" md="10">
-          <p align="center">* Required fields</p>
-          <p align="center">{{ error }}</p>
-        </v-col>
-      </v-row>
-      <br v-if="!isMobile" />
-      <br v-if="!isMobile" />
-      <v-row justify="center">
-        <v-col cols="12" align="center">
-          <v-btn class="text-capitalize" type="submit" rounded outlined dark>
-            Sign Up
-          </v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
+    <v-text-field
+      v-model="username"
+      :rules="usernameRules"
+      :counter="64"
+      error-count="1"
+      type="email"
+      name="email"
+      label="Synx ID* (email)"
+      dark
+      required
+    ></v-text-field>
+    <v-text-field
+      v-model="password"
+      :rules="passwordRules"
+      :counter="32"
+      error-count="1"
+      type="password"
+      name="password"
+      label="Password*"
+      dark
+      required
+    ></v-text-field>
+    <v-text-field
+      v-model="confirmPassword"
+      :rules="passwordRules"
+      :counter="32"
+      error-count="1"
+      type="password"
+      name="password"
+      label="Confirm Password*"
+      dark
+      required
+    ></v-text-field>
+    <div class="body-1 font-italic mt-4" align="center">* Required fields</div>
+    <v-expand-transition>
+      <div v-show="expand" class="body-1" align="center">{{ error }}</div>
+    </v-expand-transition>
+    <v-btn
+      class="text-capitalize mt-8"
+      color="primary"
+      type="submit"
+      rounded
+      outlined
+    >
+      Sign Up
+    </v-btn>
   </v-form>
 </template>
 
@@ -68,11 +60,11 @@ export default {
   data() {
     return {
       valid: false,
+      expand: false,
       error: "",
       username: "",
       password: "",
       confirmPassword: "",
-      colorRed: "#dd5745",
       usernameRules: [
         v => !!v || "E-mail is required",
         v => /.+@.+/.test(v) || "E-mail must be valid"
@@ -98,7 +90,7 @@ export default {
           confirmPassword: this.confirmPassword
         });
       } else if (!this.checkIfPasswordMatch) {
-        this.error = "Password doesn't match";
+        this.error = "Password must match";
       }
     },
     resetError() {
@@ -110,7 +102,7 @@ export default {
     ...mapState(["isMobile"]),
     ...mapState("registration", ["verifyEmailSentErrorMsg"]),
     checkIfPasswordMatch() {
-      return this.password === this.confirmPassword ? true : false;
+      return this.password === this.confirmPassword;
     }
   },
   watch: {
@@ -125,23 +117,16 @@ export default {
     },
     confirmPassword() {
       this.resetError();
+    },
+    error() {
+      this.expand = !this.expand;
     }
   }
 };
 </script>
 
-<style>
-p {
-  font-family: sans-serif;
-  font-weight: 300;
-  color: #ffffff;
-}
-.theme--dark.v-btn {
-  color: #dd5745 !important;
-}
-.v-btn__content {
-  font-family: sans-serif;
-  font-weight: 400;
-  color: #ffffff !important;
+<style scoped>
+.v-btn--outlined {
+  border: thin solid var(--v-secondary-base);
 }
 </style>

@@ -10,7 +10,7 @@
         width="150px"
       />
     </v-col>
-    <v-col cols="12" sm="10" md="8">
+    <v-col cols="12" sm="6" md="4">
       <router-view></router-view>
     </v-col>
   </v-row>
