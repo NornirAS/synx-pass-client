@@ -5,9 +5,9 @@
         alt="synx-pass-logo"
         class="mt-4"
         contain
-        src="../assets/synx-pass-logo.png"
+        src="../assets/synx-pass-logo.webp"
         transition="scale-transition"
-        width="150px"
+        width="149px"
       />
     </v-col>
     <v-col cols="12" sm="6" md="4">
@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
 .bg {
-  background: url("../assets/synx-pass-background.png") no-repeat center fixed;
+  background: url("../assets/synx-pass-background.webp") no-repeat center fixed;
   background-size: cover;
   height: 100%;
 }
