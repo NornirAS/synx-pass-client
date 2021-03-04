@@ -35,7 +35,9 @@ export default {
     submitForm() {
       const isValid = this.$refs.form.validate();
       if (isValid) {
-        this.$socket.emit("reset_password", this.username);
+        this.$socket.emit("reset_password", {
+          username: this.username
+        });
       }
     }
   }
