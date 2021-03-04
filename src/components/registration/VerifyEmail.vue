@@ -1,21 +1,4 @@
 <template>
-  <!-- <div>
-    <div v-if="!isVerifiedEmail">
-      <h1 align="center">
-        Email verification. Please wait...
-      </h1>
-      <br />
-      <p align="center">
-        {{ error }}
-      </p>
-    </div>
-    <div v-else>
-      <h1 align="center">
-        Confirm your password
-      </h1>
-      <verify-email-form :username="username"></verify-email-form>
-    </div>
-  </div> -->
   <home-view-template>
     <div v-if="!isVerifiedEmail && !isVerifiedEmailError" slot="title">
       Email verification. Please wait...
@@ -40,7 +23,7 @@ export default {
   data() {
     return {
       error: "",
-      isVerifiedEmail: false,
+      isVerifiedEmail: true,
       isVerifiedEmailError: false
     };
   },
