@@ -1,17 +1,20 @@
 const state = {
-  idToken: "",
-  authError: ""
+  token: "",
+  authenticationError: ""
 };
 
 const mutations = {
   authUser(state, { token }) {
-    state.idToken = token;
+    state.token = token;
+  },
+  resetToken(state) {
+    state.token = "";
   },
   authError(state, { error }) {
-    state.authError = error;
+    state.authenticationError = error;
   },
-  resetError(state) {
-    state.authError = "";
+  resetAuthenticationError(state) {
+    state.authenticationError = "";
   }
 };
 

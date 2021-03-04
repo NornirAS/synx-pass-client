@@ -1,69 +1,44 @@
 <template>
-  <div>
-    <h1 align="center">
+  <home-view-template>
+    <div slot="title">
       Get your Token
-    </h1>
-    <br />
-    <p align="center">
+    </div>
+    <div slot="description">
       Want to know more about Synx Pass Token?
       <a
         href="https://synxpass.com/"
-        class="text-decoration-none synxpass-link"
+        class="text-decoration-none"
         target="_blank"
         >Learn here!
       </a>
-    </p>
-    <GetTokenForm />
-    <p align="center">
+    </div>
+    <div slot="form">
+      <get-token-form></get-token-form>
+    </div>
+    <div slot="helper">
       <router-link
         :to="{ name: 'reset-password' }"
-        class="text-decoration-none synxpass-link"
+        class="text-decoration-none"
       >
         Forgot you password?
       </router-link>
-    </p>
-    <p align="center">
+    </div>
+    <div slot="helper">
       Don't have an account?
-      <router-link
-        :to="{ name: 'registration' }"
-        class="text-decoration-none synxpass-link"
+      <router-link :to="{ name: 'registration' }" class="text-decoration-none"
         >Sign Up
       </router-link>
-    </p>
-  </div>
+    </div>
+  </home-view-template>
 </template>
 
 <script>
+import HomeViewTemplate from "../HomeViewTemplate";
 import GetTokenForm from "./GetTokenForm";
 export default {
-  computed: {
-    successMessage() {
-      return this.$store.state.registration.successMessage;
-    }
-  },
-  watch: {
-    successMessage() {
-      this.$router.push({ name: "registration-success" });
-    }
-  },
   components: {
+    HomeViewTemplate,
     GetTokenForm
   }
 };
 </script>
-
-<style scoped>
-h1 {
-  font-size: 30px;
-  font-weight: 300;
-  color: #ffffff;
-}
-p {
-  font-size: 16px;
-  font-weight: 300;
-  color: #ffffff;
-}
-.synxpass-link {
-  color: #dd5745;
-}
-</style>

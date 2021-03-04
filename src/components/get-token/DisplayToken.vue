@@ -1,44 +1,36 @@
 <template>
-  <div>
-    <h1 align="center">
+  <home-view-template>
+    <div slot="title">
       Your Token
-    </h1>
-    <br />
-    <p align="center">
+    </div>
+    <div slot="description">
       {{ token }}
-    </p>
-    <p align="center">
+    </div>
+    <div slot="helper">
       <router-link
         :to="{ name: 'registration' }"
         class="text-decoration-none synxpass-link"
         >Back Home
       </router-link>
-    </p>
-  </div>
+    </div>
+  </home-view-template>
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
+import HomeViewTemplate from "../HomeViewTemplate";
 export default {
+  beforeDestroy() {
+    this.resetToken();
+  },
+  methods: {
+    ...mapMutations("authentication", ["resetToken"])
+  },
   computed: {
-    token() {
-      return this.$store.state.authModule.idToken;
-    }
+    ...mapState("authentication", ["token"])
+  },
+  components: {
+    HomeViewTemplate
   }
 };
 </script>
-
-<style scoped>
-h1 {
-  font-size: 30px;
-  font-weight: 300;
-  color: #ffffff;
-}
-p {
-  font-size: 16px;
-  font-weight: 300;
-  color: #ffffff;
-}
-.synxpass-link {
-  color: #dd5745;
-}
-</style>

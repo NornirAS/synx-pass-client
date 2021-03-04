@@ -99,7 +99,6 @@ export default {
     }
   },
   computed: {
-    ...mapState(["isMobile"]),
     ...mapState("registration", ["verifyEmailSentErrorMsg"]),
     checkIfPasswordMatch() {
       return this.password === this.confirmPassword;

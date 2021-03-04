@@ -5,95 +5,80 @@
     @submit.prevent="submitForm"
     lazy-validation
   >
-    <v-container>
-      <v-row justify="center">
-        <v-col cols="12" sm="10" md="8">
-          <v-text-field
-            v-model="authData.username"
-            :rules="[v => !!v || 'Username is required']"
-            type="email"
-            name="email"
-            label="Synx ID (email)"
-            error-count="2"
-            dark
-            required
-          ></v-text-field>
-          <v-text-field
-            v-model="authData.password"
-            :rules="[v => !!v || 'Password is required']"
-            type="password"
-            name="password"
-            label="Password"
-            error-count="2"
-            dark
-            required
-          ></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row justify="center">
-        <v-col cols="12" md="4">
-          <p :color="colorWhite" align="center">{{ error }}</p>
-        </v-col>
-      </v-row>
-      <br v-if="!isMobile" />
-      <br v-if="!isMobile" />
-      <v-row justify="center">
-        <v-col cols="12" md="4" align="center">
-          <v-btn
-            :color="colorWhite"
-            class="text-capitalize"
-            type="submit"
-            rounded
-            outlined
-            dark
-          >
-            Get Token
-          </v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
+    <v-text-field
+      v-model="username"
+      :rules="[v => !!v || 'Username is required']"
+      type="email"
+      name="email"
+      label="Synx ID (email)"
+      error-count="1"
+      dark
+      required
+    ></v-text-field>
+    <v-text-field
+      v-model="password"
+      :rules="[v => !!v || 'Password is required']"
+      type="password"
+      name="password"
+      label="Password"
+      error-count="1"
+      dark
+      required
+    ></v-text-field>
+    <v-expand-transition>
+      <div v-show="expand" class="body-1" align="center">{{ error }}</div>
+    </v-expand-transition>
+    <v-btn class="text-capitalize mt-8" type="submit" rounded outlined dark>
+      Get Token
+    </v-btn>
   </v-form>
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
       valid: false,
+      expand: false,
       error: "",
-      authData: {
-        username: "",
-        password: ""
-      },
-      colorWhite: "#FFFFFF"
+      username: "",
+      password: ""
     };
   },
   methods: {
+    ...mapMutations("authentication", ["resetAuthenticationError"]),
     submitForm() {
-      this.$refs.form.validate();
-      if (this.$refs.form.validate()) {
-        this.$socket.emit("authenticate", this.authData);
-        this.$refs.form.reset();
+      const isValid = this.$refs.form.validate();
+      if (isValid) {
+        this.$socket.emit("authenticate", {
+          username: this.username,
+          password: this.password
+        });
       }
+    },
+    resetError() {
+      this.expand = false;
+      this.error = "";
+      this.resetAuthenticationError();
     }
   },
   computed: {
-    isAuth() {
-      return this.$store.state.authModule.idToken;
-    },
-    authError() {
-      return this.$store.state.authModule.authError;
-    },
-    isMobile() {
-      return this.$store.state.isMobile;
-    }
+    ...mapState("authentication", ["token", "authenticationError"])
   },
   watch: {
-    isAuth() {
-      this.$store.commit("authModule/resetError");
+    username() {
+      this.resetError();
+    },
+    password() {
+      this.resetError();
+    },
+    token() {
+      this.resetError();
       this.$router.push({ name: "token" });
     },
-    authError(newValue) {
+    authenticationError(newValue) {
+      this.expand = true;
       this.error = newValue;
     }
   }
@@ -101,9 +86,7 @@ export default {
 </script>
 
 <style scoped>
-p {
-  font-size: 16px;
-  font-weight: 300;
-  color: #ffffff;
+.v-btn--outlined {
+  border: thin solid var(--v-secondary-base);
 }
 </style>

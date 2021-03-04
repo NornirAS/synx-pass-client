@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import registration from "./modules/registration";
-import authModule from "./modules/authentication";
+import authentication from "./modules/authentication";
 import resetPassword from "./modules/reset-password";
 
 Vue.use(Vuex);
@@ -18,7 +18,7 @@ export default new Vuex.Store({
   },
   modules: {
     registration,
-    authModule,
+    authentication,
     resetPassword
   }
 });
