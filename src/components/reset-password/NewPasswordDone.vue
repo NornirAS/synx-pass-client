@@ -1,34 +1,26 @@
 <template>
-  <div>
-    <h1 align="center">
+  <home-view-template>
+    <div slot="title">
       Congratulations!
-    </h1>
-    <br />
-    <p align="center">
+    </div>
+    <div slot="description">
       Password has been successfully changed
-    </p>
-    <p align="center">
+    </div>
+    <div slot="helper">
       <router-link
         :to="{ name: 'get-token' }"
         class="text-decoration-none synxpass-link"
         >Get your Token
       </router-link>
-    </p>
-  </div>
+    </div>
+  </home-view-template>
 </template>
 
-<style scoped>
-h1 {
-  font-size: 30px;
-  font-weight: 300;
-  color: #ffffff;
-}
-p {
-  font-size: 16px;
-  font-weight: 300;
-  color: #ffffff;
-}
-.synxpass-link {
-  color: #dd5745;
-}
-</style>
+<script>
+import HomeViewTemplate from "../HomeViewTemplate";
+export default {
+  components: {
+    HomeViewTemplate
+  }
+};
+</script>

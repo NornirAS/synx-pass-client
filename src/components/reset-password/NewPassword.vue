@@ -1,23 +1,24 @@
 <template>
-  <div>
-    <h1 align="center">
+  <home-view-template>
+    <div slot="title">
       Change password
-    </h1>
-    <br />
-    <p align="center">
+    </div>
+    <div slot="description">
       Enter your new password
-    </p>
-    <new-password-form></new-password-form>
-  </div>
+    </div>
+    <div slot="form">
+      <new-password-form></new-password-form>
+    </div>
+  </home-view-template>
 </template>
 
 <script>
+import { mapState } from "vuex";
+import HomeViewTemplate from "../HomeViewTemplate";
 import NewPasswordForm from "./NewPasswordForm";
 export default {
   computed: {
-    newPasswordSuccess() {
-      return this.$store.state.resetPasswordModule.newPasswordSuccess;
-    }
+    ...mapState("resetPassword", ["newPasswordSuccess"])
   },
   watch: {
     newPasswordSuccess() {
@@ -25,20 +26,8 @@ export default {
     }
   },
   components: {
+    HomeViewTemplate,
     NewPasswordForm
   }
 };
 </script>
-
-<style scoped>
-h1 {
-  font-size: 30px;
-  font-weight: 300;
-  color: #ffffff;
-}
-p {
-  font-size: 16px;
-  font-weight: 300;
-  color: #ffffff;
-}
-</style>

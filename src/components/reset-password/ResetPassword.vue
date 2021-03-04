@@ -1,32 +1,33 @@
 <template>
-  <div>
-    <h1 align="center">
+  <home-view-template>
+    <div slot="title">
       Forgot your password?
-    </h1>
-    <br />
-    <p align="center">
+    </div>
+    <div slot="description">
       Don't worry! Just fill in your email and we'll send you a link to reset
       your password.
-    </p>
-    <reset-password-form></reset-password-form>
-    <p align="center">
+    </div>
+    <div slot="form">
+      <reset-password-form></reset-password-form>
+    </div>
+    <div slot="helper">
       Don't have an account?
       <router-link
         :to="{ name: 'registration' }"
         class="text-decoration-none synxpass-link"
         >Sign Up
       </router-link>
-    </p>
-  </div>
+    </div>
+  </home-view-template>
 </template>
 
 <script>
+import { mapState } from "vuex";
+import HomeViewTemplate from "../HomeViewTemplate";
 import ResetPasswordForm from "./ResetPasswordForm";
 export default {
   computed: {
-    resetPasswordSuccess() {
-      return this.$store.state.resetPasswordModule.resetPasswordSuccess;
-    }
+    ...mapState("resetPassword", ["resetPasswordSuccess"])
   },
   watch: {
     resetPasswordSuccess() {
@@ -34,23 +35,8 @@ export default {
     }
   },
   components: {
+    HomeViewTemplate,
     ResetPasswordForm
   }
 };
 </script>
-
-<style scoped>
-h1 {
-  font-size: 30px;
-  font-weight: 300;
-  color: #ffffff;
-}
-p {
-  font-size: 16px;
-  font-weight: 300;
-  color: #ffffff;
-}
-.synxpass-link {
-  color: #dd5745;
-}
-</style>
