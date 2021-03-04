@@ -7,6 +7,7 @@
       Want to know more about Synx Pass?
       <a
         href="https://synxhive.com/"
+        rel="noopener noreferrer"
         class="text-decoration-none"
         target="_blank"
         >Learn here!

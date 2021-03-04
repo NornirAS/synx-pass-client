@@ -5,7 +5,11 @@
     </div>
     <div slot="description">
       Now you can Sign In to
-      <a href="https://domain.cioty.com" class="text-decoration-none">
+      <a
+        href="https://domain.cioty.com"
+        rel="noopener noreferrer"
+        class="text-decoration-none"
+      >
         CIOTY.com
       </a>
     </div>
