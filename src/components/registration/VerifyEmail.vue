@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
     <div v-if="!isVerifiedEmail">
       <h1 align="center">
         Email verification. Please wait...
@@ -15,17 +15,33 @@
       </h1>
       <verify-email-form :username="username"></verify-email-form>
     </div>
-  </div>
+  </div> -->
+  <home-view-template>
+    <div v-if="!isVerifiedEmail && !isVerifiedEmailError" slot="title">
+      Email verification. Please wait...
+    </div>
+    <div v-if="isVerifiedEmailError" slot="title">
+      {{ error }}
+    </div>
+    <div v-if="isVerifiedEmail" slot="title">
+      Confirm your password
+    </div>
+    <div v-if="isVerifiedEmail" slot="form">
+      <verify-email-form :username="username"></verify-email-form>
+    </div>
+  </home-view-template>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import HomeViewTemplate from "../HomeViewTemplate";
 import VerifyEmailForm from "./VerifyEmailForm";
 export default {
   data() {
     return {
       error: "",
-      isVerifiedEmail: false
+      isVerifiedEmail: false,
+      isVerifiedEmailError: false
     };
   },
   created() {
@@ -52,6 +68,7 @@ export default {
       this.isVerifiedEmail = true;
     },
     completeEmailVerificationErrorMsg(newValue) {
+      this.isVerifiedEmailError = true;
       this.error = newValue;
     },
     registrationSuccessMsg() {
@@ -59,20 +76,8 @@ export default {
     }
   },
   components: {
+    HomeViewTemplate,
     VerifyEmailForm
   }
 };
 </script>
-
-<style scoped>
-h1 {
-  font-size: 30px;
-  font-weight: 300;
-  color: #ffffff;
-}
-p {
-  font-size: 16px;
-  font-weight: 300;
-  color: #ffffff;
-}
-</style>
