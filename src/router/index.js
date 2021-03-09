@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import RegistrationPage from "../components/registration/RegistrationPage";
 import VerifyEmailSentSuccess from "../components/registration/VerifyEmailSentSuccess";
 import VerifyEmail from "../components/registration/VerifyEmail";
+import VerifyEmailComplete from "../components/registration/VerifyEmailComplete";
 import RegistrationSuccess from "../components/registration/RegistrationSuccess";
 import GetToken from "../components/get-token/GetToken";
 import DisplayToken from "../components/get-token/DisplayToken";
@@ -33,6 +34,11 @@ const routes = [
         path: "verify-email",
         name: "verify-email",
         component: VerifyEmail
+      },
+      {
+        path: "verify-email-complete",
+        name: "verify-email-complete",
+        component: VerifyEmailComplete
       },
       {
         path: "registration-success",
