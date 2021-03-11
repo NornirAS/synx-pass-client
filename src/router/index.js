@@ -10,6 +10,7 @@ import GetToken from "../components/get-token/GetToken";
 import DisplayToken from "../components/get-token/DisplayToken";
 import ResetPassword from "../components/reset-password/ResetPassword";
 import ResetPasswordDone from "../components/reset-password/ResetPasswordDone";
+import NewPasswordRedirect from "../components/reset-password/NewPasswordRedirect";
 import NewPassword from "../components/reset-password/NewPassword";
 import NewPasswordDone from "../components/reset-password/NewPasswordDone";
 
@@ -64,6 +65,11 @@ const routes = [
         path: "reset-password-done",
         name: "reset-password-done",
         component: ResetPasswordDone
+      },
+      {
+        path: "new-password-redirect",
+        name: "new-password-redirect",
+        component: NewPasswordRedirect
       },
       {
         path: "new-password",
