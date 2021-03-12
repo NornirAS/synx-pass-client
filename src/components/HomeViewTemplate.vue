@@ -1,5 +1,5 @@
 <template>
-  <div class="home-view-template align-center justify-center">
+  <div class="align-center justify-center">
     <div class="headline" align="center">
       <slot name="title"></slot>
     </div>
@@ -14,9 +14,3 @@
     </div>
   </div>
 </template>
-
-<style scoped>
-.home-view-template {
-  height: 100%;
-}
-</style>
