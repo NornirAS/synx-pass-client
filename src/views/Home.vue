@@ -1,6 +1,6 @@
 <template>
   <v-row class="bg" justify="center">
-    <v-col cols="12" md="10" :align="alignDependsOnScreenSize">
+    <v-col cols="12" md="10" :align="this.isMobile ? 'center' : 'left'">
       <v-img
         alt="synx-pass-logo"
         class="mt-4"
@@ -20,10 +20,7 @@
 import { mapState } from "vuex";
 export default {
   computed: {
-    ...mapState(["isMobile"]),
-    alignDependsOnScreenSize() {
-      return this.isMobile ? "center" : "left";
-    }
+    ...mapState(["isMobile"])
   }
 };
 </script>
