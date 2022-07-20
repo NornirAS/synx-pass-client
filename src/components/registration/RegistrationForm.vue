@@ -73,6 +73,8 @@ export default {
         v => !!v || "Password is required",
         v => (v && v.length) >= 9 || "Password must be minimum 9 characters",
         v => (v && v.length) <= 30 || "Password must be maximum 30 character",
+        v => 
+          /^[a-zA-Z0-9]+$/.test(v) || "Password can contain only alpanumeric characters",
         v =>
           /(?=.*[A-Z])/.test(v) || "Must have at least one uppercase character",
         v => /(?=.*\d)/.test(v) || "Must have at least one number"
